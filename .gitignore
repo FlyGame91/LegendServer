@@ -1,0 +1,65 @@
+# ================================================================
+# THIS REPOSITORY CONTAINS CODE ONLY.
+#
+# Game assets, extracted master data, resource indexes and save data
+# MUST NEVER be committed.  They are the publisher's copyrighted work,
+# and each user is expected to generate/hold their own copies.
+# ================================================================
+
+# ---- game client (original binaries AND its asset caches) ----
+/client/
+**/*_Data/
+**/Caches/
+*.bundle
+*.assets
+*.resource
+
+# ---- extracted / generated game data ----
+/game_data/
+masterdata/
+masterdata.json
+masterdata.zip
+master/*.zip
+catalog*.bin
+cdn_index.json
+fileInfo
+**/fileInfo
+
+# ---- capture / contracts (real server responses) ----
+/contracts/
+**/contracts/
+*_capture/
+*_recorder/
+api_calls.ndjson
+*.ndjson
+
+# ---- save data (player records) ----
+/state/
+state/user.json
+state/profiles/
+db/
+db_*/
+*.pre-*
+*.bak-*
+*.bak
+*.orig
+*.rej
+*~
+
+# ---- runtime artefacts ----
+*.log
+*.log.[0-9]*
+_server_run.log
+_server_err.log
+_requests*.log
+_responses*.log
+_crash.log
+__pycache__/
+*.pyc
+
+# ---- editors / OS ----
+.vs/
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
