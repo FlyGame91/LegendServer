@@ -51,15 +51,15 @@
 
 ```
 <工作目录>/
-├── client/                  # 你的游戏客户端（原样放这里，目录内含 *_Data/）
-├── game_data/               # 由你自己的客户端/抓包生成的数据
-│   ├── masterdata/          #   解包后的 master CSV（410 张表）
-│   ├── masterdata.zip       #   master 包（服务端下发给客户端）
-│   └── capture/             #   你自己抓的真实响应样本
-└── server/                  # 本仓库的代码
-    ├── main.mjs
-    ├── state/               #   存档（首次运行自动生成）
-    └── contracts/           #   契约样本（你自备）
+├── client/                      # 你的游戏客户端（原样放这里，目录内含 *_Data/）
+└── server/                      # ← 本仓库 clone 到这里
+    ├── main.mjs                 #   入口
+    ├── game_data/               #   由你自己的客户端/抓包生成的数据
+    │   ├── masterdata/          #     解包后的 master CSV（410 张表）
+    │   ├── masterdata.zip       #     master 包（服务端下发给客户端）
+    │   └── capture/             #     你自己抓的真实响应样本
+    ├── contracts/               #   契约样本（你自备）
+    └── state/                   #   存档（首次运行自动生成）
 ```
 
 ## 快速开始
@@ -110,22 +110,24 @@ restart-server.cmd        :: 杀掉旧进程 → 等端口释放 → 启动一�
 
 ```
 .
-├── server/
-│   ├── main.mjs              # 入口（崩溃可观测）
-│   ├── server.mjs            # HTTP 核心：路由 / 请求日志 / 出口整形
-│   ├── state.mjs             # 状态引擎：存档、发放、日/周计数器
-│   ├── masterdata.mjs        # master CSV 解析器
-│   ├── character.mjs         # 角色工厂 + 属性复算
-│   ├── item.mjs              # 装备 / 护符 / 附魔
-│   ├── gacha.mjs             # 抽卡池与抽取
-│   ├── campaign.mjs          # 运营活动加成
-│   ├── rewards.mjs           # 奖励表解析
-│   ├── quest-result.mjs      # 战斗/跳过结算
-│   ├── routes-*.mjs          # 分模块路由（8 个）
-│   ├── use-profile.mjs       # 存档档位管理
-│   ├── heal.mjs              # 一次性数据修复工具
-│   └── *.test-ish.mjs        # 测试套件（见下）
-└── run-tests.mjs             # 一键跑全部测试
+├── README.md / NOTICE / LICENSE / .gitignore
+└── server/
+    ├── main.mjs              # 入口（崩溃可观测）
+    ├── server.mjs            # HTTP 核心：路由 / 请求日志 / 出口整形
+    ├── state.mjs             # 状态引擎：存档、发放、日/周计数器
+    ├── masterdata.mjs        # master CSV 解析器
+    ├── character.mjs         # 角色工厂 + 属性复算
+    ├── item.mjs              # 装备 / 护符 / 附魔 / 炼成
+    ├── gacha.mjs             # 抽卡池与抽取
+    ├── campaign.mjs          # 运营活动加成
+    ├── rewards.mjs           # 奖励表解析
+    ├── quest-result.mjs      # 战斗/跳过结算
+    ├── routes-*.mjs          # 分模块路由（8 个）
+    ├── use-profile.mjs       # 存档档位管理
+    ├── heal.mjs              # 一次性数据修复工具
+    ├── audit / selftest / functest / emissiontest / statetest / contest /
+    │   invariants / verify_status / verify_vs_live   # 测试套件
+    └── run-tests.mjs         # 一键跑全部测试
 ```
 
 ## 环境变量
@@ -144,7 +146,7 @@ restart-server.cmd        :: 杀掉旧进程 → 等端口释放 → 启动一�
 ## 测试
 
 ```cmd
-node run-tests.mjs            :: 起一个隔离实例（18199 + 独立存档），跑完即杀
+node run-tests.mjs            :: 在 server/ 下执行：起隔离实例（18199 + 独立存档），跑完即杀
 ```
 
 | 套件 | 覆盖 |

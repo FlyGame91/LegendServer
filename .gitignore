@@ -63,3 +63,7 @@ __pycache__/
 .idea/
 Thumbs.db
 desktop.ini
+
+# ---- stray OS / driver artefacts ----
+NVIDIA Corporation/
+*.umdlog
